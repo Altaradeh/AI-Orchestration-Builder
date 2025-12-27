@@ -9,3 +9,11 @@ Scope is intentionally limited to:
 - Optional opt-in save
 
 See `docs/orchestration_spec.md` for the full behavior contract.
+## Setup
+
+This project uses Poetry for dependency management.
+
+```bash
+poetry install
+poetry shell
+
