@@ -1,8 +1,9 @@
-# src/run_local.py
-
 from ember_ai.workflows.worksheet_generator import generate_worksheet
-import ember_ai.config
-print ("Using OpenAI Model:", ember_ai.config.OPENAI_MODEL)
+from ember_ai.workflows.save_worksheet import save_worksheet
+
+# -----------------------------
+# Simulated educator input
+# -----------------------------
 sample_input = {
     "grade_level": 3,
     "subject": "Math",
@@ -16,5 +17,24 @@ sample_input = {
     "tone": "supportive"
 }
 
+# -----------------------------
+# Step 1: Generate worksheet
+# -----------------------------
 result = generate_worksheet(sample_input)
+print("\n--- GENERATED WORKSHEET ---")
 print(result)
+
+# -----------------------------
+# Step 2: Simulate opt-in save
+# -----------------------------
+USER_ID = "11111111-1111-1111-1111-111111111111"  # fake UUID for local test
+CONSENT_TO_SAVE = True  # change to False to test opt-out
+
+save_result = save_worksheet(
+    user_id=USER_ID,
+    worksheet=result,
+    consent=CONSENT_TO_SAVE
+)
+
+print("\n--- SAVE RESULT ---")
+print(save_result)

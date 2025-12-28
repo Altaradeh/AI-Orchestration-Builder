@@ -16,6 +16,13 @@ def save_worksheet(
         "worksheet": worksheet.model_dump()
     }
 
-    result = supabase.table("worksheet_outputs").insert(payload).execute()
+    #result = supabase.table("worksheet_outputs").insert(payload).execute()
+    result = supabase.rpc(
+    "insert_worksheet_output",
+    {
+        "p_user_id": user_id,
+        "p_worksheet": worksheet.model_dump()
+    }
+).execute()
 
-    return {"status": "saved", "id": result.data[0]["id"]}
+    return {"status": "saved"}
