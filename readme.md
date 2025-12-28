@@ -1,19 +1,39 @@
-# Ember AI – Worksheet Generator MVP
+# Ember AI – Worksheet Generator (MVP)
 
-This repository contains the MVP AI orchestration logic for Ember, a privacy-first AI assistant for educators.
+This repository contains a minimal MVP for a **privacy-first AI worksheet generator**.
+It is backend-only and designed for local execution and review.
 
-Scope is intentionally limited to:
-- One AI workflow
-- One tool (worksheet generator)
-- Session-only execution
-- Optional opt-in save
+---
 
-See `docs/orchestration_spec.md` for the full behavior contract.
-## Setup
+## Requirements
 
-This project uses Poetry for dependency management.
+- Python **3.10+**
+- Git
+- Poetry
+
+---
+
+## Installation
+
+### 1. Clone the repository
 
 ```bash
 poetry install
-poetry shell
+
+3. Set environment variables
+
+Create a .env file in the project root:
+
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
+OPENAI_MODEL=gpt-4o-mini
+
+SUPABASE_URL=https://xxxx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=xxxxxxxxxxxxxxxx
+
+*Running the Project*
+
+Run the local test script:
+
+poetry run python src/run_local.py
+
 
