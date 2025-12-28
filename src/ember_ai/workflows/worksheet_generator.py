@@ -3,7 +3,12 @@ from langchain_openai import ChatOpenAI
 from ember_ai.prompts.builder import build_prompt
 from ember_ai.schemas import WorksheetInput, WorksheetOutput, RefusalOutput
 from ember_ai.config import OPENAI_MODEL
+import warnings
 
+warnings.filterwarnings(
+    "ignore",
+    message=".*response_format is not default parameter.*"
+)
 
 def generate_worksheet(input_data: dict):
     # 1. Validate input
@@ -32,7 +37,7 @@ def generate_worksheet(input_data: dict):
     llm = ChatOpenAI(
         model=OPENAI_MODEL,
         temperature=0.3,
-        response_format={"type": "json_object"}
+        response_format={"type": "json_object"},
     )
 
     # 5. Invoke once
@@ -51,9 +56,9 @@ def generate_worksheet(input_data: dict):
             f"SCHEMA:\n{WorksheetOutput.model_json_schema()}\n\n"
             f"INVALID JSON:\n{raw_output}"
         )
-    
+
         repair_response = llm.invoke(repair_prompt)
-    
+
         try:
             return WorksheetOutput.model_validate_json(repair_response.content)
         except Exception:

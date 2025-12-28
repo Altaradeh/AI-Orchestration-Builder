@@ -41,13 +41,17 @@ class SafetyNotes(BaseModel):
     student_data: str
     human_in_loop: str
 
-
+class AnswerKeyItem(BaseModel):
+    id: str
+    correct_answer: str
+    
 class WorksheetOutput(BaseModel):
     metadata: WorksheetMetadata
     sections: List[WorksheetSection]
-    answer_key: List[dict]
+    answer_key: List[AnswerKeyItem]
     safety_notes: SafetyNotes
 
 class RefusalOutput(BaseModel):
     reason: str
     message: str
+
