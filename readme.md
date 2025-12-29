@@ -7,7 +7,7 @@ It is backend-only and designed for local execution and review.
 
 ## Requirements
 
-- Python **3.10+**
+- Python 3.10+
 - Git
 - Poetry
 
@@ -15,25 +15,35 @@ It is backend-only and designed for local execution and review.
 
 ## Installation
 
-### 1. Clone the repository
 
-```bash
-poetry install
+1. Install dependencies
 
-3. Set environment variables
+    poetry install
 
-Create a .env file in the project root:
+2. Set environment variables
 
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
-OPENAI_MODEL=gpt-4o-mini
+Create a `.env` file in the project root:
 
-SUPABASE_URL=https://xxxx.supabase.co
-SUPABASE_SERVICE_ROLE_KEY=xxxxxxxxxxxxxxxx
+    OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
+    OPENAI_MODEL=gpt-4o-mini
 
-*Running the Project*
+(Optional – only if you want to test opt-in persistence)
+
+    SUPABASE_URL=https://xxxx.supabase.co
+    SUPABASE_SERVICE_ROLE_KEY=xxxxxxxxxxxxxxxx
+
+---
+
+## Running the Project
 
 Run the local test script:
 
-poetry run python src/run_local.py
+    poetry run python src/run_local.py
 
+This will:
+- Run a single worksheet-generation workflow
+- Print a schema-validated JSON output OR a structured refusal
+- Optionally save the result if opt-in persistence is enabled
+
+---
 
